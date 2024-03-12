@@ -76,11 +76,11 @@
                         
                         {% if request.user.is_authenticated %}
                         <li class="nav-item mx-2">
-                            <a class="nav-link" href="{% url 'logout_page' %}">Logout</a>
+                            <a class="nav-link" href="{% url 'logout' %}">Logout</a>
                         </li>
                         {% else %}
                         <li class="nav-item mx-2">
-                            <a class="nav-link" href="{% url 'login_page' %}">Login</a>
+                            <a class="nav-link" href="{% url 'login' %}">Login</a>
                         </li>
                         {% endif %}
 

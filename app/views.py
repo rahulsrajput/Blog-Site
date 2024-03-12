@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.core.paginator import Paginator
 from .models import Post
+from django.contrib.auth import logout
 # Create your views here.
 
 # Base templates views
@@ -36,4 +37,5 @@ def signup_page(request):
 
 
 def logout_page(request):
+    logout(request)
     return HttpResponseRedirect('/')
