@@ -33,21 +33,26 @@
         
         <ul class="article_ul">
             <!--  -->
+            {% for i in page_obj %}
             <li>
-                <a href="">
-                    <span>Post Title</span>
-                    <span class="article-list_date">Date</span>
+                <a href="{{i.slug }}">
+                    <span>{{i.title}}</span>
+                    <span class="article-list_date">{{i.created_at}}</span>
                 </a>
             </li>
             <!--  -->
+            {% endfor %}
 
 
         </ul>
 
-        <a href="" class="pagination">&lt; View Older Posts</a>
+        {% if page_obj.has_previous %}
+        <a href="?page={{page_obj.previous_page_number}}" class="pagination">&lt; View Older Posts</a>
+        {% endif %}
 
-        <a href="" class="pagination">View Newer Posts &gt;</a>
-
+        {% if page_obj.has_next %}
+        <a href="?page={{page_obj.next_page_number}}" class="pagination">View Newer Posts &gt;</a>
+        {% endif %}
 
     </section>
 

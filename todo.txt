@@ -9,8 +9,37 @@
 - basic database change from sqlite3 to postgresql which is hosted on railway.app
 
 
----------Templates, Urls, Views
+---------Templates, Urls, Views, Model
 - basic template and css setup
-- basic url setup inside templates
-- rendering username if user is_authenticated(loggedIn)
-- rendering login/logout on the basis of if user is_authenticated or not.
+    - basic url setup inside templates
+    - rendering username if user is_authenticated(loggedIn)
+    - rendering login/logout on the basis of if user is_authenticated or not.
+
+
+-Model:
+    - Post Model/Class Created in models.py
+    - installed pillow using pip install pillow for using 'models.imagefield'
+    - created slug field for dynamic Post Urls
+
+
+- installed django-ckeditor-5 for Rich Text Editor using pip install django-ckeditor-5
+    - config django-ckeditor-5 in settings.py file
+    - config django-ckeditor-5 in urls.py file
+
+
+-Admin:
+    - Registered Post Model/Class in admin.py file
+    - used prepopulated_fields for slug so automatically title will be used as slug
+
+
+-home view:
+    - Rendered Post objects on home page
+    - used Pagination (per page 7 objects(post))
+    - used page_obj for checking previous page or next page in 'home.html'
+    - used slug as a url to open a post
+
+
+-post_page view: 
+    - used slug and get a post object and then rendered that object content on post template
+    - used {{post_obj.image.url}} to serve uploaded image on post template & ofc media_root, media_url is setup already
+
