@@ -7,3 +7,10 @@
 - basic app config in settings.py
 - basic media config in settings.py and url.py / why ? for handling user uploaded images
 - basic database change from sqlite3 to postgresql which is hosted on railway.app
+
+
+---------Templates, Urls, Views
+- basic template and css setup
+- basic url setup inside templates
+- rendering username if user is_authenticated(loggedIn)
+- rendering login/logout on the basis of if user is_authenticated or not.

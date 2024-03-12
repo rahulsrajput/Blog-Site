@@ -1,0 +1,55 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block title %}Rahul{% endblock %}
+
+{% block content %}
+
+<div class="main">
+    <div class="author text-white">
+        <h1 class="author_heading">Rahul Rajput</h1>
+        <p class="author_body">Web developer and content creator</p>
+    </div>
+
+    <img src="{% static 'image/hero-image.webp' %}" alt="" class="hero-image" width="987" height="528">
+
+
+
+    <section class="article text-white" id="post">
+       
+
+
+        <h2 class="article_heading">Latest Posts</h2>
+        
+        <div class="input-group rounded mt-4">
+            
+            <input type="search" class="form-control rounded border-0" style="margin-right: 20px;" placeholder="Search" aria-label="Search"
+                aria-describedby="search-addon" />
+
+            <span class="input-group-text border-0 rounded bg-transparent text-white" id="search-addon">
+                <i class="fas fa-search"></i>
+            </span>
+
+        </div>
+        
+        <ul class="article_ul">
+            <!--  -->
+            <li>
+                <a href="">
+                    <span>Post Title</span>
+                    <span class="article-list_date">Date</span>
+                </a>
+            </li>
+            <!--  -->
+
+
+        </ul>
+
+        <a href="" class="pagination">&lt; View Older Posts</a>
+
+        <a href="" class="pagination">View Newer Posts &gt;</a>
+
+
+    </section>
+
+</div>
+{% endblock %}
