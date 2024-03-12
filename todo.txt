@@ -4,4 +4,6 @@
 - created app for project using 'python manage.py startapp app'
 
 --------SETUP
--
+- basic app config in settings.py
+- basic media config in settings.py and url.py / why ? for handling user uploaded images
+- basic database change from sqlite3 to postgresql which is hosted on railway.app
