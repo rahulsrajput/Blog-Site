@@ -3,6 +3,7 @@
 - created django project using 'django-admin startproject blog .'
 - created app for project using 'python manage.py startapp app'
 
+
 --------SETUP
 - basic app config in settings.py
 - basic media config in settings.py and url.py / why ? for handling user uploaded images
@@ -43,3 +44,6 @@
     - used slug and get a post object and then rendered that object content on post template
     - used {{post_obj.image.url}} to serve uploaded image on post template & ofc media_root, media_url is setup already
 
+
+-Logout view:
+    - logout thing done ...

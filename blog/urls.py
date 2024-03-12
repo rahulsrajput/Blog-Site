@@ -23,6 +23,14 @@ from app import views
 urlpatterns = [
     path('admin/', admin.site.urls),
 
+    # Auth templates urls
+    path('login/', views.login_page, name='login'),
+
+    path('signup/', views.signup_page, name='signup'),
+
+    path('logout/', views.logout_page, name='logout'),
+
+    
     # Base templates urls
     path('', views.home, name='home'),
 
@@ -32,12 +40,7 @@ urlpatterns = [
 
 
 
-    # Auth templates urls
-    path('login/', views.login_page, name='login'),
 
-    path('signup/', views.signup_page, name='signup'),
-
-    path('logout/', views.logout_page, name='logout'),
 
 
 
