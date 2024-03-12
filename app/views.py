@@ -2,12 +2,12 @@ from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.core.paginator import Paginator
 from .models import Post
-from django.contrib.auth import logout
+from django.contrib.auth import logout, authenticate, login
 # Create your views here.
 
 # Base templates views
 def home(request):
-    post_objects = Post.objects.all()
+    post_objects = Post.objects.all().order_by('id')
     paginator = Paginator(post_objects, 7)
 
     page_number = request.GET.get('page')
@@ -29,6 +29,14 @@ def about(request):
 
 # Auth templates views
 def login_page(request):
+    if request.method == 'POST':
+        uname = request.POST['username']
+        upassword = request.POST['password']
+        user_obj = authenticate(username = uname, password = upassword)
+
+        login(request,user_obj)
+        return HttpResponseRedirect('/')
+    
     return render(request, 'auth/login.html')
 
 
