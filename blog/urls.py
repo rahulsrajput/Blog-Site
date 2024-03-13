@@ -38,5 +38,7 @@ urlpatterns = [
 
     path('posts/<slug:slug>/', views.post_page, name='post'),
 
+    path('profile/', views.profile, name='profile'),
+
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

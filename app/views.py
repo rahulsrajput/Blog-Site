@@ -4,6 +4,7 @@ from django.core.paginator import Paginator
 from .models import Post
 from django.contrib.auth import logout, authenticate, login
 from django.contrib.auth.models import User
+from .forms import signup_form, login_form, profile_edit
 # Create your views here.
 
 
@@ -11,19 +12,23 @@ from django.contrib.auth.models import User
 def login_page(request):
     if request.user.is_authenticated:
         return HttpResponseRedirect('/')
+    
     else:
         if request.method == 'POST':
-            uname = request.POST['username']
-            upassword = request.POST['password1']
-            user_obj = authenticate(username = uname, password = upassword)
-            
-            print(user_obj)
-            
-            if user_obj is not None:
-                login(request,user_obj)
-                return HttpResponseRedirect('/')
+            form = login_form(request,data=request.POST)
+            if form.is_valid():
+                uname = form.cleaned_data['username']
+                upass = form.cleaned_data['password']
+                user_obj = authenticate(username=uname, password=upass)
+                print(uname)
+                if user_obj is not None:
+                    login(request,user_obj)
+                    return HttpResponseRedirect('/')
+                
+        else:
+            form = login_form()
     
-    return render(request, 'auth/login.html')
+    return render(request, 'auth/login.html',context={'form':form})
 
 
 def signup_page(request):
@@ -31,14 +36,14 @@ def signup_page(request):
         return HttpResponseRedirect('/')
     else:        
         if request.method == 'POST':
-            uname = request.POST['username']
-            uemail = request.POST['email']
-            upass = request.POST['password1']
-            
-            User.objects.create_user(username=uname, password=upass, email=uemail)
-            return HttpResponseRedirect('/login')
+            form = signup_form(request.POST)
+            if form.is_valid():
+                form.save()
+                return HttpResponseRedirect('/')
+        else:
+            form = signup_form()
     
-    return render(request, 'auth/signup.html')
+    return render(request, 'auth/signup.html',context={'form':form})
 
 
 def logout_page(request):
@@ -70,3 +75,17 @@ def post_page(request, slug):
 
 def about(request):
     return render(request, 'base/about.html')
+
+
+def profile(request):
+    if request.user.is_authenticated:
+        if request.method == 'POST':
+            form = profile_edit(request.POST, instance=request.user)
+            if form.is_valid():
+                form.save()
+                return HttpResponseRedirect('/')
+        else:
+            form = profile_edit(instance = request.user) 
+        return render(request, 'base/profile.html', context={'form':form})
+    
+    return HttpResponseRedirect('/')

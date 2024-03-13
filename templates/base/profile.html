@@ -1,0 +1,17 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block title %}Profile{% endblock %}
+{% block content %}
+
+<div class="text-white mt-4 mb-4">
+    <h3>Profile</h3>
+    
+    <form action="" method="POST">
+        {% csrf_token %}
+        {{form.as_p}}
+        <input type="submit" value="Update" class="btn">
+        <a href="{% url 'home' %}" class="btn">Back</a>
+      </form>
+</div>
+
+{% endblock %}
