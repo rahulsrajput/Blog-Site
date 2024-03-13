@@ -88,7 +88,7 @@
 
                         {% if user.is_authenticated %}
                         <li class="nav-item mx-2">
-                            <a class="nav-link" href="">{{user.username}}</a>
+                            <a class="nav-link" href="">{{user.username | capfirst }}</a>
                         </li>
                         {% else %}
                         <li class="nav-item mx-2">
