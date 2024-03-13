@@ -23,9 +23,11 @@
     - created slug field for dynamic Post Urls
 
 
-- installed django-ckeditor-5 for Rich Text Editor using pip install django-ckeditor-5
-    - config django-ckeditor-5 in settings.py file
-    - config django-ckeditor-5 in urls.py file
+- installed django-tinymce for Rich Text Editor using pip install django-tinymce
+    - config django-tinymce in settings.py file
+    - config django-tinymce in urls.py file
+    - this is neccessary when using rich text editor 
+        - {{post_obj.content | safe}} => | safe
 
 
 -Admin:
@@ -55,4 +57,6 @@
     - login thing done..
 
 -Signup view:
-    -
+    - extracting details which come in POST header
+    - creating user using that detail and using User.Objects.create_user() 
+    so that not a plain password is stored but a hashed password is stored in DB.

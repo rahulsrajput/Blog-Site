@@ -1,5 +1,5 @@
 from django.db import models
-from django_ckeditor_5.fields import CKEditor5Field
+from tinymce.models import HTMLField  
 
 # Create your models here.
 class Post(models.Model):
@@ -8,5 +8,5 @@ class Post(models.Model):
     author = models.CharField(max_length=20, blank=False, null=False)
     created_at = models.DateField(auto_now=True)
     slug = models.SlugField(unique=True)
-    content = CKEditor5Field()
+    content = HTMLField()
     
