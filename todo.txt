@@ -53,3 +53,6 @@
     - if user credential is_authenticated then it return object
     - login that object
     - login thing done..
+
+-Signup view:
+    -
