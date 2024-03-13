@@ -5,6 +5,7 @@ from .models import Post
 from django.contrib.auth import logout, authenticate, login
 from django.contrib.auth.models import User
 from .forms import signup_form, login_form, profile_edit
+from django.contrib import messages
 # Create your views here.
 
 
@@ -23,6 +24,7 @@ def login_page(request):
                 print(uname)
                 if user_obj is not None:
                     login(request,user_obj)
+                    messages.success(request, 'Login Successfully')
                     return HttpResponseRedirect('/')
                 
         else:
@@ -39,7 +41,8 @@ def signup_page(request):
             form = signup_form(request.POST)
             if form.is_valid():
                 form.save()
-                return HttpResponseRedirect('/')
+                messages.success(request, 'Account Successfully Created Can Login Now')
+                return HttpResponseRedirect('/login')
         else:
             form = signup_form()
     
@@ -48,6 +51,7 @@ def signup_page(request):
 
 def logout_page(request):
     logout(request)
+    messages.success(request, 'Logout Successfully')
     return HttpResponseRedirect('/')
 
 
@@ -83,7 +87,8 @@ def profile(request):
             form = profile_edit(request.POST, instance=request.user)
             if form.is_valid():
                 form.save()
-                return HttpResponseRedirect('/')
+                messages.success(request, 'Profile Updated Successfully')
+                return HttpResponseRedirect('/profile')
         else:
             form = profile_edit(instance = request.user) 
         return render(request, 'base/profile.html', context={'form':form})

@@ -4,6 +4,15 @@
 
 {% block content %}
 
+
+{% if messages %}
+{% for message in messages %}
+<div class="text-white mt-4 mb-4 bg-success text-center rounded-5">
+  <span>{{message}}</span>
+</div>
+{% endfor %}
+{% endif %}
+
 <div class="main">
     <div class="author text-white">
         <h1 class="author_heading">Rahul Rajput</h1>
@@ -60,4 +69,6 @@
     </section>
 
 </div>
+
+
 {% endblock %}

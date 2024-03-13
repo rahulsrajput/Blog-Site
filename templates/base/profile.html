@@ -3,6 +3,14 @@
 {% block title %}Profile{% endblock %}
 {% block content %}
 
+{% if messages %}
+{% for message in messages %}
+<div class="text-white mt-4 mb-4 bg-success text-center rounded-5">
+  <span>{{message}}</span>
+</div>
+{% endfor %}
+{% endif %}
+
 <div class="text-white mt-4 mb-4">
     <h3>Profile</h3>
     
