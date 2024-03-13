@@ -22,6 +22,7 @@ from app import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', views.home, name='home'),
 
     # Auth templates urls
     path('login/', views.login_page, name='login'),
@@ -32,16 +33,10 @@ urlpatterns = [
 
     
     # Base templates urls
-    path('', views.home, name='home'),
 
     path('about/', views.about, name='about'),
 
-    path('<slug:slug>/', views.post_page, name='post'),
-
-
-
-
-
+    path('posts/<slug:slug>/', views.post_page, name='post'),
 
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

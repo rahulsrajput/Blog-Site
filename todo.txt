@@ -60,3 +60,5 @@
     - extracting details which come in POST header
     - creating user using that detail and using User.Objects.create_user() 
     so that not a plain password is stored but a hashed password is stored in DB.
+
+
