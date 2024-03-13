@@ -40,6 +40,7 @@
     - used Pagination (per page 7 objects(post))
     - used page_obj for checking previous page or next page in 'home.html'
     - used slug as a url to open a post
+    - search query implementation (search word every post will be listed that contains the words).
 
 
 -post_page view: 

@@ -15,22 +15,25 @@
 
 
     <section class="article text-white" id="post">
-       
+
 
 
         <h2 class="article_heading">Latest Posts</h2>
-        
-        <div class="input-group rounded mt-4">
-            
-            <input type="search" class="form-control rounded border-0" style="margin-right: 20px;" placeholder="Search" aria-label="Search"
-                aria-describedby="search-addon" />
 
-            <span class="input-group-text border-0 rounded bg-transparent text-white" id="search-addon">
-                <i class="fas fa-search"></i>
-            </span>
+        <form action="" method="post">
+            {% csrf_token %}
+            <div class="input-group rounded mt-4">
 
-        </div>
-        
+                <input type="search" class="form-control rounded border-0" style="margin-right: 20px;"
+                    placeholder="Search" aria-label="Search" aria-describedby="search-addon" name="search" />
+
+                <span class="input-group-text border-0 rounded bg-transparent text-white" id="search-addon">
+                    <i class="fas fa-search"></i>
+                </span>
+
+            </div>
+        </form>
+
         <ul class="article_ul">
             <!--  -->
             {% for i in page_obj %}

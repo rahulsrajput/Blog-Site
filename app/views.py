@@ -49,12 +49,17 @@ def logout_page(request):
 
 # Base templates views
 def home(request):
-    post_objects = Post.objects.all().order_by('id')
-    paginator = Paginator(post_objects, 7)
+    if request.method == 'POST':
+        search = request.POST['search']
+        page_obj = Post.objects.filter(title__icontains = search)
+        
+    else:
+        post_objects = Post.objects.all().order_by('id')
+        paginator = Paginator(post_objects, 7)
 
-    page_number = request.GET.get('page')
-    page_obj = paginator.get_page(page_number)
-
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+   
     return render(request, 'base/home.html', context={'page_obj':page_obj})
 
 
