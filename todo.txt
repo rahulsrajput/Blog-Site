@@ -1,0 +1,113 @@
+--------BASIC
+- created .venv using 'python -m venv .venv'
+- created django project using 'django-admin startproject blog .'
+- created app for project using 'python manage.py startapp app'
+
+
+--------SETUP
+- basic app config in settings.py
+- basic media config in settings.py and url.py / why ? for handling user uploaded images
+- basic database change from sqlite3 to postgresql which is hosted on railway.app
+
+
+
+
+
+---------Templates, Urls, Views, Model
+- basic template and css setup
+    - basic url setup inside templates
+    - rendering username if user is_authenticated(loggedIn)
+    - rendering login/logout on the basis of if user is_authenticated or not.
+
+
+-Model:
+    - Post Model/Class Created in models.py
+    - installed pillow using pip install pillow for using 'models.imagefield'
+    - created slug field for dynamic Post Urls
+
+
+- installed django-tinymce for Rich Text Editor using pip install django-tinymce
+    - config django-tinymce in settings.py file
+    - config django-tinymce in urls.py file
+    - this is neccessary when using rich text editor 
+        - {{post_obj.content | safe}} => | safe
+
+
+-Admin:
+    - Registered Post Model/Class in admin.py file
+    - used prepopulated_fields for slug so automatically title will be used as slug
+
+
+-home view:
+    - Rendered Post objects on home page
+    - used Pagination (per page 7 objects(post))
+    - used page_obj for checking previous page or next page in 'home.html'
+    - used slug as a url to open a post
+    - search query implementation (search word every post will be listed that contains the words).
+
+
+-post_page view: 
+    - used slug and get a post object and then rendered that object content on post template
+    - used {{post_obj.image.url}} to serve uploaded image on post template & ofc media_root, media_url is setup already
+
+
+
+
+---------Authentication
+
+-Forms.py file:
+    - imported UserCreationForm, AuthenticationForm, UserChangeForm
+      this are inbuilt django forms no need to make custom HTML forms
+
+    - just make a class and inherit this class
+    - and provide model also inside class Meta so that form will be 
+      created for that model in this project (User).
+    - use this form in views.py file
+    - pass that 'form' in template SIMPLE.
+
+
+-Logout view:
+    - logout thing done ...
+
+
+-Login view:
+    - if user credential is_authenticated then it return object
+    - login that object
+    - login thing done..
+
+-Signup view:
+    - form = signup_form(request.POST) this code will create form
+      with data which come in 'POST header'
+
+    - will save this form using form.save() if the form is valid
+    - after saving form django will automatically create USER. becuase we are using UserCreationForm.
+
+    
+    - IMP (for custom html Form)
+        - creating user using that detail and using User.Objects.create_user() 
+        so that not a plain password is stored but a hashed password is stored in DB.
+
+
+-User Profile Update:
+    - created profile_edit form & used that in view & template
+    - using instance=request.user to display user detail
+    - & using request.POST , instance=request.user if request method is POST
+      for updating data.
+    - Done
+
+
+-Message Framework:
+    - using messages whenever any changes happen(ex:login,logout) or for errors.
+    - for user understanding.
+
+
+-Signals (using to send mail to Registered user):
+    -   Registered Signals in apps.py file
+    -   using post_save Signal (when Post Object will be
+        created & saved Signal will be called & 
+        whatever we define that will be executed)
+
+-Emails
+    - added email backend in settings.py 
+    - added email_template & sending that template as a text in email messages
+    - visit Signals.py file for sytax classes we imported for this
