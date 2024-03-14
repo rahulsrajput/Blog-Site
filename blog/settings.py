@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 from pathlib import Path
 import os
+import cloudinary_storage
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -25,7 +26,7 @@ SECRET_KEY = 'django-insecure-ary!oe*e&zxo2hbnc*)0j(@9qlkn%om04@%+sbbp!)8$ujs@f_
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['.vercel.app', '.now.sh', '127.0.0.1', 'localhost']
 
 
 # Application definition
@@ -40,6 +41,8 @@ INSTALLED_APPS = [
     
     'app',
     'tinymce',
+    'cloudinary_storage',
+    'cloudinary',
 ]
 
 MIDDLEWARE = [
@@ -50,6 +53,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'blog.urls'
@@ -124,10 +129,21 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'app/static')]
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_STORAGE="whitenoise.storage.CompressedStaticFilesStorage"
+
 
 MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR / 'media'
-STATIC_ROOT = BASE_DIR / 'static'
+
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'dmtucuzom',
+    'API_KEY': '193861647335541',
+    'API_SECRET': 'K41mh2hwosIxRooG_tgYWs6udCo'
+}
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
@@ -141,6 +157,9 @@ EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'rahulsrajput29@gmail.com'
 EMAIL_HOST_PASSWORD = 'tpmg oqvh tdjv wikt'
+
+
+# CSRF_TRUSTED_ORIGINS = ["https://web-production-d9e1.up.railway.app"]
 
 
 # tinymce extra tools
